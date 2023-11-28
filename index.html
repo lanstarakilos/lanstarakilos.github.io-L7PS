@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/tags.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+    <title>SOI Learning Portal</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-banner {
+        width: 100%;
+        background: linear-gradient(to right, rgb(192, 127, 127), rgb(126, 73, 65));
+        color: #fff;
+    }
+
+
+    .hero-banner .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-banner img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-top: 0;
+    }
+
+    .hero-banner .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-banner .col-md-6 {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+
+    .hero-banner h1 {
+        font-size: 2.5rem;
+        color: black;
+    }
+
+    .hero-banner p {
+        font-size: 1.5rem;
+        color: black;
+    }
+
+    .navbar {
+        padding: 1rem;
+        background: linear-gradient(to right, #8b615b, #f0c0a0);
+    }
+
+
+    .hero-banner {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-banner .btn {
+        margin-right: 10px;
+    }
+
+    .container.mt-5 h3,
+    .container.mt-5 p {
+        text-align: center;
+    }
+
+    .card-section .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .card-section .card-footer {
+        background-color: #f8f9fa;
+    }
+
+    .navbar-nav .nav-link {
+        color: black;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: white;
+        background-color: rgb(192, 127, 127);
+    }
+
+
+
+    .col-md-4 {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    footer {
+        background: linear-gradient(to right, #8b615b, #f0c0a0);
+        color: #fff;
+        padding: 20px 0;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+    }
+
+    .footer-link {
+        color: #bbb;
+        text-decoration: none;
+        margin: 0 8px;
+    }
+
+    .footer-link:hover {
+        color: #fff;
+    }
+
+    .container .col-md-4:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .card-section .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-section .card-footer:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .card-section .card-footer .btn:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    @keyframes slideInFromRight {
+        0% {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .hero-banner img {
+        animation: slideInFromRight 1s ease-out;
+    }
+
+    #avatar {
+        border: 2px solid green;
+        /* Initial border color */
+        transition: border-color 0.3s ease;
+        /* Smooth transition effect */
+    }
+
+    /* Grey border color for offline state */
+    #avatar.border-grey {
+        border-color: grey !important;
+    }
+
+    /* Custom styles for carousel control buttons */
+    #cardCarousel .carousel-control-prev,
+    #cardCarousel .carousel-control-next {
+        color: rgb(9, 9, 9);
+        /* Change the color to your preferred color */
+    }
+
+    /* Custom styles for carousel control icons */
+    #cardCarousel .carousel-control-prev-icon,
+    #cardCarousel .carousel-control-next-icon {
+        background-color: rgb(10, 10, 10);
+        /* Change the color to your preferred color */
+    }
+
+    .custom-tooltip {
+        display: none;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    .bookmark-btn:hover .custom-tooltip {
+        display: block;
+    }
+
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .ui-menu-item {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .ui-menu-item:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SOI Learning Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Courses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">HTML</a>
+                            <a class="dropdown-item" href="#">CSS</a>
+                            <a class="dropdown-item" href="#">PHP</a>
+                            <a class="dropdown-item" href="#">JavaScript</a>
+                            <a class="dropdown-item" href="#">Python</a>
+                            <a class="dropdown-item" href="#">Java</a>
+                            <a class="dropdown-item" href="#">iOS</a>
+                            <a class="dropdown-item" href="#">React</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Search</a>
+                    </li>
+
+                    <form class="form-inline">
+                        <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+
+
+                    <!-- Notifications Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell" data-toggle="tooltip" title="Your Tooltip Text"
+                                style="color: rgb(161, 76, 76);"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationsDropdown">
+                            <!-- Unread messages -->
+                            <a class="dropdown-item" href="#">New Notification 1</a>
+                            <a class="dropdown-item" href="#">New Notification 2</a>
+                            <!-- Read messages -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Read Notification 1</a>
+                            <a class="dropdown-item" href="#">Read Notification 2</a>
+                        </div>
+                    </li>
+
+                    <!-- User Profile Icon -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-user-circle" data-toggle="tooltip" title="Your Tooltip Text"
+                                style="color: rgb(161, 76, 76);"></i>
+                        </a>
+                    </li>
+                </ul>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Hero Section -->
+    <div class="hero-banner">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Welcome to SOI Learning Portal</h1>
+                    <p class="lead">Expertly crafted courses that best fit your learning needs and preferences.</p>
+                    <button class="btn btn-primary" style="background-color: rgb(161, 76, 76);">Browse Course</button>
+                    <button class="btn btn-primary" style="background-color: rgb(161, 76, 76);">Be an
+                        Instructor</button>
+
+                </div>
+                <div class="col-md-6">
+                    <img id="avatar" src="img/girl.png" class="img-fluid" onclick="toggleAvatarStatus()">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Three-column Section -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="d-flex align-items-start">
+                    <img src="img/book.png" alt="Course Image 1" class="img-fluid me-3" style="max-width: 40px;">
+                    <div>
+                        <h3>158 online courses</h3>
+                        <p>Enjoy a variety of fresh topics</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-start">
+                    <img src="img/programmer.png" alt="Course Image 2" class="img-fluid me-3" style="max-width: 40px;">
+                    <div>
+                        <h3>Expert instruction</h3>
+                        <p>Find the right instructor for you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-start">
+                    <img src="img/clock.png" alt="Course Image 3" class="img-fluid me-3" style="max-width: 40px;">
+                    <div>
+                        <h3>Lifetime access</h3>
+                        <p>Learn on your schedule</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Carousel Section -->
+    <div id="cardCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="container mt-5 card-section">
+                    <div class="row">
+                        <!-- Card 1 -->
+                        <div class="col-md-3 mb-4" data-card-id="Introduction to HTML and CSS">
+                            <div class="card text-center">
+                                <img src="img/coding.png" class="card-img-top" alt="Course 1" style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Introduction to HTML and CSS</h5>
+                                    <p class="card-text">2h 30m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Hannah Lim</span>
+                                    <button class="btn btn-light bookmark-btn"
+                                        data-card-title="Introduction to HTML and CSS">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-3 mb-4" data-card-id="User Experience and Interface Design">
+                            <div class="card text-center">
+                                <img src="img/ui-ux.png" class="card-img-top mx-auto" alt="Course 2"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">User Experience and Interface Design</h5>
+                                    <p class="card-text">2h 45m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Julia Lee</span>
+                                    <button class="btn btn-light bookmark-btn"
+                                        data-card-title="User Experience and Interface Design">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-3 mb-4" data-card-id="iOS App Development using Xcode and Swift">
+                            <div class="card text-center">
+                                <img src="img/app-store.png" class="card-img-top mx-auto" alt="Course 3"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">iOS App Development using Xcode and Swift</h5>
+                                    <p class="card-text">4h 30m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Ryan Low</span>
+                                    <button class="btn btn-light bookmark-btn"
+                                        data-card-title="iOS App Development using Xcode and Swift">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="col-md-3 mb-4" data-card-id="Front-end JavaScript Frameworks">
+                            <div class="card text-center">
+                                <img src="img/js-file.png" class="card-img-top mx-auto" alt="Course 4"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Front-end JavaScript Frameworks</h5>
+                                    <p class="card-text">3h 45m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Azhar Kamar</span>
+                                    <button class="btn btn-light bookmark-btn"
+                                        data-card-title="Front-end JavaScript Frameworks">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="container mt-5 card-section">
+                    <div class="row">
+                        <!-- Card 5 -->
+                        <div class="col-md-3 mb-4" data-card-id="Java">
+                            <div class="card text-center">
+                                <img src="img/java.png" class="card-img-top mx-auto" alt="Fifth Card"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Java</h5>
+                                    <p class="card-text">5h 30m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">John Doe</span>
+                                    <button class="btn btn-light bookmark-btn" data-card-title="Java">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="col-md-3 mb-4" data-card-id="Python">
+                            <div class="card text-center">
+                                <img src="img/python.png" class="card-img-top mx-auto" alt="Sixth Card"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Python</h5>
+                                    <p class="card-text">6h 45m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Jane Smith</span>
+                                    <button class="btn btn-light bookmark-btn" data-card-title="Python">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 7 -->
+                        <div class="col-md-3 mb-4" data-card-id="React">
+                            <div class="card text-center">
+                                <img src="img/react.png" class="card-img-top mx-auto" alt="Seventh Card"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">React</h5>
+                                    <p class="card-text">7h 30m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Robert Johnson</span>
+                                    <button class="btn btn-light bookmark-btn" data-card-title="React">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 8 -->
+                        <div class="col-md-3 mb-4" data-card-id="PHP">
+                            <div class="card text-center">
+                                <img src="img/php.png" class="card-img-top mx-auto" alt="Eighth Card"
+                                    style="max-width: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">PHP</h5>
+                                    <p class="card-text">8h 45m</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex align-items-center">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle"
+                                            style="color: rgb(192, 127, 127);"></i></a>
+                                    <span class="mr-2">Emma White</span>
+                                    <button class="btn btn-light bookmark-btn" data-card-title="PHP">
+                                        <i class="fa fa-bookmark"></i>
+                                        <div class="custom-tooltip">Add to Bookmarks</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <a class="carousel-control-prev" href="#cardCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#cardCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="offcanvas bg-light" id="bookmarkOffcanvas" tabindex="-1" aria-labelledby="bookmarkOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-dark" id="bookmarkOffcanvasLabel">Bookmarked Courses</h5>
+            <button type="button" class="close" data-dismiss="offcanvas" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Bookmarked courses will be dynamically added here -->
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <div class="containerf">
+            <p>&copy; © 2021 SOI Learning Portal. All Rights Reserved.</p>
+            <a href="#" style="color: #fff;">Privacy</a> |
+            <a href="#" style="color: #fff;">Terms</a> |
+            <a href="#" style="color: #fff;">Feedback</a> |
+            <a href="#" style="color: #fff;">Support</a>
+        </div>
+    </footer>
+
+    <script src="js/tags.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#search").autocomplete({
+                source: tags,
+                minLength: 1,
+                delay: 300
+            });
+        });
+
+        function toggleAvatarStatus() {
+            var avatar = $("#avatar");
+
+            // Check if the current border color is green
+            if (avatar.css("border-color") === "rgb(0, 128, 0)") {
+                // Change the border color to grey (offline)
+                avatar.css("border-color", "grey");
+            } else {
+                // Change the border color to green (online)
+                avatar.css("border-color", "green");
+            }
+        }
+
+        $(document).ready(function () {
+            // Show the Offcanvas when the bookmark button is clicked
+            $('.bookmark-btn').click(function () {
+                // Get the card title from data attribute
+                var cardTitle = $(this).data('card-title');
+
+                // Create a new bookmarked course element
+                var bookmarkedCourse = $('<div class="mb-2"><span>' + cardTitle + '</span></div>');
+
+                // Append the bookmarked course to the Offcanvas body
+                $('#bookmarkOffcanvas .offcanvas-body').append(bookmarkedCourse);
+
+                // Show the Offcanvas
+                $('#bookmarkOffcanvas').addClass('show');
+            });
+
+            // Hide the Offcanvas and remove the bookmarked courses when the close button is clicked
+            $('#bookmarkOffcanvas .close').click(function () {
+                // Remove all bookmarked courses
+                $('#bookmarkOffcanvas .offcanvas-body').empty();
+
+                // Hide the Offcanvas
+                $('#bookmarkOffcanvas').removeClass('show');
+            });
+        });
+    </script>
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
